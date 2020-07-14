@@ -1,10 +1,10 @@
 <template>
 	<v-app>
-		<PostList />
+		<PostList :select='select'/>
 	</v-app>
 </template>
 
-<script lang="ts">
+<script>
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
 import PostList from '~/components/Post/PostList.vue'
 
@@ -13,9 +13,13 @@ import PostList from '~/components/Post/PostList.vue'
 	  PostList
   }
 })
-
-export default class Index extends Vue
-{
-	msg=""
+export default class Index extends Vue{
+	get select(){
+		return 'Card'
+	}
 }
 </script>
+
+<style scoped>
+
+</style>

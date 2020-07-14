@@ -4,13 +4,13 @@ import { Module, Mutation, MutationAction, Action, VuexModule } from 'vuex-modul
 export default class friend extends VuexModule {
     public status:string = 'ON-LINE'
 
-    public access_status:any = [ 'ON-LINE', 'OFF-LINE']
+    public access_status:Array<String> = [ 'ON-LINE', 'OFF-LINE']
 
     public get get_status():string{
         return this.status
     }
 
-    public get get_access_status():any{
+    public get get_access_status():Array<String>{
         return this.access_status
     }
 

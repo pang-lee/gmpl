@@ -7,26 +7,31 @@
       <v-divider></v-divider>
       <v-row justify="center">
         <v-col xs="5" sm="5" md="5" lg="5" xl="5">
-          <v-text-field v-model="search" append-icon="mdi-account-search" color="black" placeholder="Search..." single-line hide-details dense></v-text-field>
+          <v-text-field v-model="search" :append-icon="search_icon" color="black" placeholder="Search..." single-line hide-details dense></v-text-field>
         </v-col>
         <v-col xs="5" sm="5" md="2" lg="2" xl="2">
-          <v-select v-model="cur_status" :items="access_status" menu-props="auto" persistent-hint hint="Check Who Is Here" prepend-icon='mdi-account-clock' autofocus dense></v-select>
+          <v-select v-model="cur_status" :items="access_status" menu-props="auto" persistent-hint hint="Check Who Is Here" :prepend-icon='album' autofocus dense></v-select>
         </v-col>
       </v-row>
       <v-data-table class="elevation-5 mt-5" :page.sync="page" :headers="headers" :items="content" :search="search" :items-per-page="itemsPerPage" @page-count="pageCount = $event" hide-default-footer></v-data-table>
-      <v-pagination class="text-center pt-2 mt-3" v-model="page" :length="pageCount" circle></v-pagination>
+      <v-pagination class="text-center pt-2 mt-3" v-model="page" :length="pageCount" circle :next-icon="last_page" :prev-icon="first_page"></v-pagination>
     </v-container>
   </client-only>
 </template>
 
-<script type='text/typescript'>
+<script>
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
 import { friend } from '~/store'
+import * as icon from '@mdi/js'
 
 @Component
 export default class Friend extends Vue{
     data () {
       return {
+        search_icon:icon.mdiAccountSearchOutline,
+        album:icon.mdiAdjust,
+        last_page:icon.mdiPageLast,
+        first_page:icon.mdiPageFirst,
         search: '',
         page: 1,
         pageCount: 0,

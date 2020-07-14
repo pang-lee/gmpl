@@ -2,23 +2,28 @@
 	<v-app>
 		<v-content>
 			<nuxt/>
-			<HeaderComponent/>
+			<webmode />
+			<mobilemode />
 		</v-content>
 	</v-app>
 </template>
 
-<script type="ts">
+<script>
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
-import HeaderComponent from '~/components/UI/HeaderComponent.vue'
+import webmode from '~/components/UI/WebMode.vue'
+import mobilemode from '~/components/UI/MobileMode.vue'
 
-	@Component
-	({
-		components:{
-			HeaderComponent
-		}
-	})
-	export default class Default extends Vue
-	{
-		msg="123456"
+@Component({
+	components:{
+		webmode,
+		mobilemode
 	}
+})
+export default class Default extends Vue{
+
+}
 </script>
+
+<style scoped>
+
+</style>

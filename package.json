@@ -11,20 +11,31 @@
     "start": "nuxt-ts start"
   },
   "dependencies": {
-    "@nuxt/typescript-runtime": "^0.4.6",
-    "@nuxtjs/axios": "^5.10.3",
+    "@babylonjs/core": "^4.1.0",
+    "@babylonjs/loaders": "^4.1.0",
+    "@mdi/js": "^5.3.45",
+    "@nuxt/typescript-runtime": "^0.4.10",
+    "@nuxtjs/apollo": "^4.0.1-rc.1",
+    "@nuxtjs/auth": "^4.9.1",
+    "@nuxtjs/axios": "^5.11.0",
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/pwa": "^3.0.0-beta.20",
-    "echarts": "^4.7.0",
-    "nuxt": "^2.12.2",
+    "babylonjs-loaders": "^4.1.0",
+    "echarts": "^4.8.0",
+    "graphql-tag": "^2.10.3",
+    "nuxt": "^2.13.2",
+    "nuxt-sweetalert2": "^1.0.0",
     "simple-vue-validator": "^0.16.0",
+    "typeface-roboto": "0.0.75",
+    "universal-cookie": "^4.0.3",
     "v-charts": "^1.19.0",
-    "vue2-editor": "^2.10.2"
+    "vue-babylonjs": "^1.0.0-beta.7",
+    "vue2-perfect-scrollbar": "^1.5.0"
   },
   "devDependencies": {
-    "@nuxt/typescript-build": "^0.6.6",
+    "@nuxt/typescript-build": "^1.0.3",
     "@nuxtjs/vuetify": "^1.11.2",
-    "nodemon": "^2.0.3",
+    "nodemon": "^2.0.4",
     "nuxt-property-decorator": "^2.7.2",
     "vuex-module-decorators": "^0.17.0"
   }

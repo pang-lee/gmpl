@@ -5,38 +5,36 @@
         <v-subheader class="font-italic font-weight-bold">Profile</v-subheader>
 
         <v-expansion-panels popout focusable>
-          <v-expansion-panel v-for="(message, i) in information" :key="i" hide-actions @click="content(i)">
-            <v-expansion-panel-header>
-              <v-row align="center" class="spacer" no-gutters>
-                <v-col cols="4" sm="2" md="1">
-                  <v-avatar size="36px">
-                    <img v-if="message.avatar" alt="Avatar" src="https://cdn.vuetifyjs.com/images/john.jpg">
-                    <v-icon v-else :color="message.color" v-text="message.icon"></v-icon>
-                  </v-avatar>
-                </v-col>
-                <v-col class=".display-2 text-truncate .font-italic font-weight-bold">
-                  {{ message.first }} {{ message.last }}
-                </v-col>
-                <v-col v-if="message.gender" class=".display-2 text-truncate hidden-sm-and-down">
-                  &mdash;
-                  {{ message.gender }}
-                </v-col>
-
-                <v-col v-if="message.email" class=".display-2 text-truncate hidden-md-and-down">
-                  &mdash;
-                  {{ message.email }}
-                </v-col>
-
-                <v-col v-if="message.birthday" class=".display-2 text-truncate hidden-sm-and-down">
-                  &mdash;
-                  {{ message.birthday }}
-                </v-col>
-                <v-col v-if="message.phone" class=".display-2 text-truncate hidden-sm-and-down">
-                  &mdash;
-                  {{ message.phone }}
-                </v-col>
-              </v-row>
-            </v-expansion-panel-header>
+          <v-expansion-panel v-for="(n, index) in info_item_number" :key="n" hide-actions @click="content(index)">
+              <v-expansion-panel-header>
+                <v-row align="center" class="spacer" no-gutters>
+                  <v-col cols="4" sm="2" md="1">
+                    <v-avatar size="36px">
+                      <img v-if="info_avatar" alt="Avatar" :src="info_avatar">
+                      <!-- <v-icon v-else :color="message.color" v-text="message.icon"></v-icon> -->
+                    </v-avatar>
+                  </v-col>
+                  <v-col class="text-truncate font-italic font-weight-bold">
+                    {{info_name}}
+                  </v-col>
+                  <v-col v-if="info_gender" class="text-truncate hidden-sm-and-down">
+                    &mdash;
+                    {{ info_gender }}
+                  </v-col>
+                  <v-col v-if="info_email" class="text-truncate hidden-md-and-down">
+                    &mdash;
+                    {{ info_email }}
+                  </v-col>
+                  <v-col v-if="info_birthday" class="text-truncate hidden-sm-and-down">
+                    &mdash;
+                    {{ info_birthday }}
+                  </v-col>
+                  <v-col v-if="info_phone" class="text-truncate hidden-sm-and-down">
+                    &mdash;
+                    {{ info_phone }}
+                  </v-col>
+                </v-row>
+              </v-expansion-panel-header>
 
             <v-expansion-panel-content>
               <v-divider></v-divider>
@@ -46,6 +44,7 @@
                   </keep-alive>
                 </v-card-text>
             </v-expansion-panel-content>
+
           </v-expansion-panel>
         </v-expansion-panels>
       </v-row>
@@ -71,19 +70,42 @@ export default class Profile extends Vue {
       }
     }
 
-    get information(){
-      return admin.self_info
+    get info_item_number(){
+      return admin.info_item_numbers
     }
 
-    set information(admin){
-      return admin
+    get info_avatar(){
+      return admin.self_info.avatar
     }
 
-  content(i){
-    switch(i){
+    get info_name(){
+      if(admin.self_info.first == null) return admin.self_info.last
+      else if(admin.self_info.last == null) return admin.self_info.first
+      else if(admin.self_info.first == null && admin.self_info.last == null) return ''
+      else return admin.self_info.first + ' ' + admin.self_info.last
+    }
+
+    get info_gender(){
+      return admin.self_info.gender
+    }
+
+    get info_email(){
+      return admin.self_info.email
+    }
+
+    get info_birthday(){
+      return admin.self_info.birthday
+    }
+
+    get info_phone(){
+      return admin.self_info.phone
+    }
+
+  content(index){
+    switch(index){
       case 0: return this.current = 'Self'
       break
-      // case 1: return this.current = 'Friend'
+      // case 1: return this.current = 'test'
       // break
       // case 2: return this.current = 'Notification'
       // break

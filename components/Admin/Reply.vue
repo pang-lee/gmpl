@@ -7,26 +7,31 @@
       <v-divider></v-divider>
       <v-row justify="center">
         <v-col cols="5">
-          <v-text-field v-model="search" append-icon="mdi-account-search" color="black" placeholder="Search..." single-line hide-details dense></v-text-field>
+          <v-text-field v-model="search" :append-icon="search_icon" color="black" placeholder="Search..." single-line hide-details dense></v-text-field>
         </v-col>
       </v-row>
-      <v-data-table class="elevation-5 mt-5" :headers="headers" :items="content" :page.sync="page" :search="search" :items-per-page="itemsPerPage" single-expand :expanded.sync="expanded" item-key="name" show-expand @page-count="pageCount = $event" hide-default-footer>
+      <v-data-table class="elevation-5 mt-5" :headers="headers" :items="content" :page.sync="page" :search="search" :items-per-page="itemsPerPage" single-expand :expanded.sync="expanded" :expand-icon="expand" item-key="name" show-expand @page-count="pageCount = $event" hide-default-footer>
         <template v-slot:expanded-item="{ headers, item }">
           <td :colspan="headers.length">More info about {{ item.name }}</td>
         </template>
       </v-data-table>
-      <v-pagination class="text-center pt-2 mt-3" v-model="page" :length="pageCount" circle></v-pagination>
+      <v-pagination class="text-center pt-2 mt-3" v-model="page" :length="pageCount" circle :next-icon="last_page" :prev-icon="first_page"></v-pagination>
     </v-container>
   </client-only>
 </template>
 
 <script>
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
+import * as icon from '@mdi/js'
 
 @Component
 export default class Reply extends Vue{
   data () {
       return {
+        search_icon:icon.mdiCommentSearchOutline,
+        expand:icon.mdiChevronDown,
+        last_page:icon.mdiPageLast,
+        first_page:icon.mdiPageFirst,
         search: '',
         page: 1,
         pageCount: 0,

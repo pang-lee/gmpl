@@ -10,18 +10,21 @@
           <v-chip :color="getColor(item.calories)" dark>{{ item.calories }}</v-chip>
         </template>
       </v-data-table>
-      <v-pagination class="text-center pt-2 mt-3" v-model="page" :length="pageCount" circle></v-pagination>
+      <v-pagination class="text-center pt-2 mt-3" v-model="page" :length="pageCount" circle :next-icon="last_page" :prev-icon="first_page"></v-pagination>
     </v-container>
   </client-only>
 </template>
 
 <script type="text/typescript">
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
+import * as icon from '@mdi/js'
 
 @Component
 export default class Notification extends Vue{
   data () {
     return {
+      last_page:icon.mdiPageLast,
+      first_page:icon.mdiPageFirst,
       search: '',
       page: 1,
       pageCount: 0,

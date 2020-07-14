@@ -1,4 +1,5 @@
 const colors = require('vuetify/es5/util/colors').default
+require('dotenv').config()
 
 module.exports = {
   mode: 'universal',
@@ -25,13 +26,16 @@ module.exports = {
   ** Global CSS
   */
   css: [
+    "typeface-roboto",
+    "~/assets/style/main.css"
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
     '~/plugins/validation.js',
-    { src: '~/plugins/vue-editor.js', mode: 'client' }
+    { src: '~/plugins/babylon.js', mode: 'client' },
+    '~/plugins/scrollbar.js',
   ],
   /*
   ** Nuxt.js dev-modules
@@ -39,7 +43,15 @@ module.exports = {
   buildModules: [
     '@nuxt/typescript-build',
     '@nuxtjs/vuetify',
+    '@nuxtjs/apollo'
   ],
+  apollo:{
+    clientConfigs:{
+      default:{
+        httpEndpoint: 'https://rickandmortyapi.com/graphql/'
+      }
+    }
+  },
   /*
   ** Nuxt.js modules
   */
@@ -49,18 +61,36 @@ module.exports = {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
+    '@nuxtjs/auth',
   ],
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    baseURL: process.env.AXIOS_URL
+  },
+  auth: {
+    strategies: {
+      // local: {
+      //   endpoints: {
+      //     login: { url: '/login', method: 'post', propertyName: 'token' },
+      //     logout: { url: '/api/auth/logout', method: 'post' },
+      //     user: { url: '/api/auth/user', method: 'get', propertyName: 'user' }
+      //   },
+        // tokenRequired: true,
+        // tokenType: 'bearer',
+        // globalToken: true,
+        // autoFetchUser: true  
+      // }
+    }
   },
   /*
   ** vuetify module configuration
   ** https://github.com/nuxt-community/vuetify-module
   */
   vuetify: {
+    defaultAssets:false,
   },
   /*
   ** Build configuration
