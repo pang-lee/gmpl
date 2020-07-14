@@ -2,22 +2,22 @@
     <client-only>
         <v-container>
             <v-row>
-                <v-col cols="6">
+                <v-col xl="6" lg="6" md="6" sm="6" cols="12">
                     <v-text-field :prepend-icon="colorize" v-model="cur_first" label="FirstName *" outlined shaped clearable :clear-icon="clear"></v-text-field>
                 </v-col>
-                <v-col cols="6">
+                <v-col xl="6" lg="6" md="6" sm="6" cols="12">
                     <v-text-field v-model="cur_last" :prepend-icon="edit" label="LastName *" outlined filled shaped clearable :clear-icon="clear"></v-text-field>
                 </v-col>
-                <v-col cols="6">
+                <v-col xl="6" lg="6" md="6" sm="6" cols="12">
                     <v-radio-group v-model="cur_gender" row :prepend-icon="wc">
                         <v-radio label="Male" value="Male" color="indigo" :off-icon="unchecked" :on-icon="checked"></v-radio>
                         <v-radio label="Female" value="Female" color="error" :off-icon="unchecked" :on-icon="checked"></v-radio>
                     </v-radio-group>
                 </v-col>
-                <v-col cols="6">
+                <v-col xl="6" lg="6" md="6" sm="6" cols="12">
                     <v-text-field label="Email *" v-model="cur_email" :prepend-icon="email" filled outlined shaped clearable :clear-icon="clear"></v-text-field>
                 </v-col>
-                <v-col cols="6">
+                <v-col xl="6" lg="6" md="6" sm="6" cols="12">
                     <v-menu v-model="menu" :close-on-content-click="false" :nudge-right="40" transition="scale-transition" offset-y min-width="290px">
                         <template v-slot:activator="{ on }">
                             <v-text-field v-model="cur_date" label="Date of Birth" :prepend-icon="date" readonly v-on="on"></v-text-field>
@@ -25,7 +25,7 @@
                         <v-date-picker v-model="cur_date" @input="menu2 = false"></v-date-picker>
                     </v-menu>
                 </v-col>
-                <v-col cols="6">
+                <v-col xl="6" lg="6" md="6" sm="6" cols="12">
                     <v-text-field label="Phone" v-model="cur_phone" :prepend-icon="phone" filled outlined shaped clearable :clear-icon="clear"></v-text-field>
                 </v-col>
             </v-row>

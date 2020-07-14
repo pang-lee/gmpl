@@ -17,7 +17,7 @@
                   <v-col class="text-truncate font-italic font-weight-bold">
                     {{info_name}}
                   </v-col>
-                  <v-col v-if="info_gender" class="text-truncate hidden-sm-and-down">
+                  <v-col v-if="info_gender" class="text-truncate hidden-xs-only">
                     &mdash;
                     {{ info_gender }}
                   </v-col>
