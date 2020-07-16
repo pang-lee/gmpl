@@ -15,14 +15,9 @@
           <v-card-title>
             <p>Comment</p>
           </v-card-title>
-          <v-card-text>
-            <p>123456</p>
-          </v-card-text>
-          <v-card-actions>
             <v-card-text>
-              <p>Hello</p>
-            </v-card-text>
-          </v-card-actions>        
+              <Disqus />
+            </v-card-text>      
         </v-card>
       </perfect-scrollbar>
     </v-dialog>
@@ -75,6 +70,8 @@ export default class PostList extends Vue{
       dialogshare: false
       }
   }
+
+  @Prop({type:Object, required: true}) card
 
   clickLike(event) {
     this.LikeStyle.color == '#90A4AE' ? this.LikeStyle.color = '#F44336' : this.LikeStyle.color = '#90A4AE'

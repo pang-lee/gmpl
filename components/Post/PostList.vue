@@ -39,7 +39,7 @@
                 </nuxt-link>
                 <v-divider></v-divider>
                 <v-card-actions>
-                <PostButton/>
+                <PostButton :card='card'/>
                 <v-spacer/>
                 <PostDetail :index='index' :card='card'/>
                 </v-card-actions>
