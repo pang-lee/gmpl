@@ -6,7 +6,7 @@
       </v-row>
       <v-divider></v-divider>
       <v-row justify="center">
-        <v-col cols="5">
+        <v-col cols="12" sm="5" md="5" lg="5" xl="5">
           <v-text-field v-model="search" :append-icon="search_icon" color="black" placeholder="Search..." single-line hide-details dense></v-text-field>
         </v-col>
       </v-row>

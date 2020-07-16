@@ -6,11 +6,8 @@
       </v-row>
       <v-divider></v-divider>
       <v-row justify="center">
-        <v-col xs="5" sm="5" md="5" lg="5" xl="5">
+        <v-col cols="12" sm="5" md="5" lg="5" xl="5">
           <v-text-field v-model="search" :append-icon="search_icon" color="black" placeholder="Search..." single-line hide-details dense></v-text-field>
-        </v-col>
-        <v-col xs="5" sm="5" md="2" lg="2" xl="2">
-          <v-select v-model="cur_status" :items="access_status" menu-props="auto" persistent-hint hint="Check Who Is Here" :prepend-icon='album' autofocus dense></v-select>
         </v-col>
       </v-row>
       <v-data-table class="elevation-5 mt-5" :page.sync="page" :headers="headers" :items="content" :search="search" :items-per-page="itemsPerPage" @page-count="pageCount = $event" hide-default-footer></v-data-table>
@@ -21,7 +18,6 @@
 
 <script>
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
-import { friend } from '~/store'
 import * as icon from '@mdi/js'
 
 @Component
@@ -68,17 +64,5 @@ export default class Friend extends Vue{
         ],
       }
     }
-
-  get access_status(){
-    return friend.get_access_status
-  }
-  
-  get cur_status(){
-    return friend.get_status
-  }
-
-  set cur_status(value){
-    return friend.set_status(value)
-  }
 }
 </script>
