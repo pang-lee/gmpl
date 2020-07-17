@@ -1,6 +1,7 @@
 <template>
 	<v-app>
 		<PostList :select='select'/>
+		<nuxt-child/>
 	</v-app>
 </template>
 

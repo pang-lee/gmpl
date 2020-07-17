@@ -7,6 +7,8 @@ export default class Main extends VuexModule {
 
     public card:Array<Object> = []
 
+    public comment:Boolean = false
+
     public get item_of_game():Array<Object>{
         return this.items
     }
@@ -15,8 +17,21 @@ export default class Main extends VuexModule {
         return this.card
     }
 
+    public get comment_dialog(){
+        return this.comment
+    }
+
     @Mutation
     public set_card(game:Array<Object>):Array<Object>{
         return this.card = game
+    }
+
+    @Mutation
+    public show_dialog():Boolean{
+        return this.comment = true
+    }
+
+    @Mutation close_dialog():Boolean{
+        return this.comment = false
     }
 }

@@ -68,7 +68,7 @@
         <h1 class="d-flex justify-center font-italic font-weight-bold my-2">Category</h1>
         <v-divider></v-divider>
         <v-list dense>
-  	      <v-list-item v-for="item in items" :key="item.text" link nuxt :to="'/game/' + item.text" @click="side_bar_item(item.text)">
+  	      <v-list-item v-for="item in items" :key="item.text" link nuxt :to="'/category/' + item.text + '/'" @click="side_bar_item(item.text)">
   	        <v-list-item-action>
   	          <v-icon>{{ item.icon }}</v-icon>
   	        </v-list-item-action>

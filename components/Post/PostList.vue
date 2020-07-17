@@ -28,7 +28,7 @@
                   </v-list-item>
                 </v-list>
                 </v-menu>
-                <nuxt-link :to="$route.fullPath + '/' + card.id" no-prefetch class="router_color">
+                <nuxt-link :to="$route.fullPath + 'game/' + card.id" no-prefetch class="router_color">
                 <v-img :src="card.img" height="200px"></v-img>
                 <v-card-title>
                   {{card.title}}
