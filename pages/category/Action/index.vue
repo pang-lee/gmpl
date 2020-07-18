@@ -1,7 +1,8 @@
 <template>
 	<v-app>
 		<PostList :select='select'/>
-		<nuxt-child/>
+		<!-- active <nuxt-child/> if want to use v-dialog -->
+		<!-- <nuxt-child/> -->
 	</v-app>
 </template>
 

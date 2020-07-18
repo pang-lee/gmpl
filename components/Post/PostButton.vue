@@ -3,33 +3,9 @@
     <v-btn depressed :ripple="false" text small @click="clickLike">
       <v-icon id="like" :style="LikeStyle">{{ favorite }}</v-icon>
     </v-btn>
-    <v-btn depressed color="blue darken-1" :ripple="false" text small nuxt :to="$route.fullPath + card.subtitle" @click="dialog()">
+    <v-btn depressed color="blue darken-1" :ripple="false" text small nuxt :to="$route.fullPath + 'comment/' + card.id" @click="dialog(card)">
       <v-icon id="comment">{{ comment }}</v-icon>
     </v-btn>
-
-    <!-- @click="dialogcomment = true" -->
-    <!-- <v-btn depressed color="blue darken-1" :ripple="false" text small @click="comment_area()">
-      <v-icon id="comment">{{ comment }}</v-icon>
-    </v-btn> -->
-    <!-- <v-dialog v-model="dialogcomment" overlay-opacity='0.5' scrollable eager>
-      <perfect-scrollbar>
-        <v-card>
-          <v-btn class="mt-2" @click="dialogcomment = false" icon large absolute right>
-            <v-icon>{{ clear }}</v-icon>
-          </v-btn>
-          <v-card-title>
-            <p>Comment</p>
-          </v-card-title>
-          <v-card-text>
-            <client-only>
-              <div class='comments'>
-                <Disqus shortname='gmpl-1' ref='disqus'  />
-              </div>
-            </client-only>
-          </v-card-text>      
-        </v-card>
-      </perfect-scrollbar>
-    </v-dialog> -->
     <v-btn depressed color="teal accent-4" :ripple="false" text small @click="dialogshare = true">
       <v-icon id="share">{{ share }}</v-icon>
     </v-btn>
@@ -95,7 +71,8 @@ export default class PostList extends Vue{
     this.BookMarkStyle.color == '#90A4AE' ? this.BookMarkStyle.color = '#E040FB' : this.BookMarkStyle.color = '#90A4AE'
   }
 
-  dialog(){
+  dialog(card){
+    main.set_selected_card(card)
     return main.show_dialog()
   }
 }
