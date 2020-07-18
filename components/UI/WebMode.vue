@@ -64,7 +64,7 @@
   
     <!-- SideBar -->
     <v-navigation-drawer v-model="drawer" temporary app clipped>
-      <perfect-scrollbar>      
+      <perfect-scrollbar>
         <h1 class="d-flex justify-center font-italic font-weight-bold my-2">Category</h1>
         <v-divider></v-divider>
         <v-list dense>

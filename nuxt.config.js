@@ -34,9 +34,9 @@ module.exports = {
   */
   plugins: [
     '~/plugins/validation.js',
-    { src: '~/plugins/babylon.js', mode: 'client' },
     '~/plugins/scrollbar.js',
-    { src: '~/plugins/disqus.js', mode: 'client'}
+    { src: '~/plugins/babylon.js', mode: 'client' },
+    { src: '~/plugins/disqus.js', mode: 'client'},
   ],
   /*
   ** Nuxt.js dev-modules
