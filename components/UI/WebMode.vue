@@ -6,7 +6,7 @@
           <v-icon>{{videogame}}</v-icon>&nbsp;PangTubes
         </v-card>
       <v-spacer/>
-        <v-text-field :append-icon-cb="() => {}" placeholder="Search..." single-line :append-icon="search" color="white" hide-details/>
+      <v-text-field :append-icon-cb="() => {}" placeholder="Search..." single-line :append-icon="search" color="white" hide-details/>
       <v-spacer/>
         <v-btn-toggle group dense>
           <v-card class="mx-2" v-for="web in web" :key="web.text">
@@ -30,6 +30,7 @@
               </v-list>
             </v-menu>
           </v-card>
+
           <v-card v-if="!isauth" class="mx-2" nuxt to="/login">
             <v-icon>{{ account }}</v-icon>
           </v-card>
@@ -85,6 +86,7 @@
 
 <script>
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
+import reply from '~/components/Admin/Reply.vue'
 import { header, admin, auth } from '~/store'
 import * as icon from '@mdi/js'
 import Cookies from 'universal-cookie'
@@ -95,7 +97,11 @@ const options = {
   maxAge: 60 * 60 * 24 * 7,
 }
 
-@Component
+@Component({
+  components:{
+    reply
+  }
+})
 export default class WebMode extends Vue{
   data(){
       return{

@@ -53,26 +53,6 @@ export default class Reply extends Vue{
       clear:icon.mdiClose,
       attendants: [
         {
-          app: 'line',
-          label: 'Friend',
-          name: 'Shih-Pang',
-          username: '李世邦(Pang)',
-          avatar: {
-            src: 'https://cdn.vuetifyjs.com/images/john.jpg',
-            alt: 'Alan Ktquez avatar'
-          }
-        },
-        {
-          app: 'wechat',
-          label: 'Friend',
-          name: 'Shih-Pang',
-          id: 'leebond88',
-          avatar: {
-            src: 'https://cdn.vuetifyjs.com/images/john.jpg',
-            alt: 'Alan Ktquez avatar'
-          }
-        },
-        {
           app: 'messenger',
           label: 'Friend',
           name: 'Shih-Pang',

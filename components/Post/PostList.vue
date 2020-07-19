@@ -45,6 +45,7 @@
                 </v-card-actions>
               </v-card>
             </v-col>
+            <reply/>
           </v-row>
         </v-container>
       </v-tab-item>
@@ -52,17 +53,26 @@
   </v-card>
 </template>
 
-<script type="ts">
+<script>
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
+import reply from '~/components/Admin/Reply.vue'
 import PostButton from '~/components/Post/PostButton.vue'
 import PostDetail from '~/components/Post/PostDetail.vue'
 import { main } from '~/store'
 import * as icon from '@mdi/js'
+import Cookies from 'universal-cookie'
+
+const cookies = new Cookies()
+const options = {
+  path: '/',
+  maxAge: 60 * 60 * 24 * 7,
+}
 
 @Component({
   components:{
     PostButton,
-    PostDetail
+    PostDetail,
+    reply
   }
 })
 export default class PostList extends Vue{

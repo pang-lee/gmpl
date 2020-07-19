@@ -30,7 +30,7 @@
       </perfect-scrollbar>
     </v-dialog>
     <v-btn depressed :ripple="false" text small @click="clickBookMark">
-      <v-icon id="bookmark" :style="BookMarkStyle">{{bookmark}}</v-icon>
+      <v-icon id="bookmark" :style="BookMarkStyle">{{ bookmark }}</v-icon>
     </v-btn>
   </div>
 </template>
