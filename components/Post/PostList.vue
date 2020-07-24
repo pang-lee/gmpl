@@ -12,7 +12,6 @@
           </v-tab>
     	</v-tabs>
     </v-sheet>
-
     <v-tabs-items v-model="tab">
       <v-tab-item v-for="(item, index) in item_option" :key="index" eager>
         <v-container>
