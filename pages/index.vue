@@ -9,8 +9,7 @@
 <script>
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
 import PostList from '~/components/Post/PostList.vue'
-import { auth } from '~/store'
-import axios from 'axios'
+import { main, auth } from '~/store'
 
 @Component({
   components: {
@@ -21,13 +20,14 @@ export default class Index extends Vue{
 	data(){
 		return {
 			topicText: 'Live',
-			Watched: []
 		}
 	}
 
-	async asyncData() {
-		const live = await axios.get('https://jsonplaceholder.typicode.com/todos')
-		return { Live: live.data }
+	asyncData() {
+		return {
+			Live: main.getLive,
+			Watched: main.getWatched
+		}
 	}
 
 	get select(){
@@ -42,11 +42,6 @@ export default class Index extends Vue{
 
 	selectedTopic(item){
 		return this.topicText = item.text
-	}
-
-	async mounted() {
-		const watched = await this.$axios.get('https://jsonplaceholder.typicode.com/users')
-		return this.Watched = watched.data
 	}
 }
 </script>

@@ -9,7 +9,7 @@
 <script>
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
 import PostList from '~/components/Post/PostList.vue'
-import { header, auth } from '~/store'
+import { header, auth, main } from '~/store'
 import axios from 'axios'
 
 @Component({
@@ -20,15 +20,16 @@ import axios from 'axios'
 export default class Index extends Vue{
 	data(){
 		return {
-			topicText: 'Recommend',
-			Played: []
+			topicText: 'Recommend'
 		}
 	}
 
-	async asyncData() {
-		const recommendation = await axios.get('https://jsonplaceholder.typicode.com/todos')
-		const hot = await axios.get('https://jsonplaceholder.typicode.com/posts')
-		return { Recommend: recommendation.data, Hot: hot.data }
+	asyncData() {
+		return {
+			Recommend: main.getRecommend,
+			Hot: main.getHot,
+			Played: main.getPlayed
+		}
 	}
 
 	get select(){
@@ -44,11 +45,6 @@ export default class Index extends Vue{
 
 	selectedTopic(item){
 		return this.topicText = item.text
-	}
-
-	async mounted() {
-		const played = await this.$axios.get('https://jsonplaceholder.typicode.com/users')
-		return this.Played = played.data
 	}
 }
 </script>

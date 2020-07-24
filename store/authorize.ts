@@ -54,26 +54,27 @@ export default class Authorize extends VuexModule {
     }
 
     @Action({ rawError: true })
-    public authenticate_API(data:object):Promise<any>{
+    public async authenticate_API(data:object):Promise<any>{
         let URL:string 
         this.context.getters.current_form == 'Register' ? URL = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + process.env.FIREBASE_API : URL = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + process.env.FIREBASE_API
-        return axios.post(URL, { ...data, returnSecureToken: true })
-                .then((result:any)=>{
-                    this.context.commit("set_token", result.data.idToken)
-                    localStorage.setItem('token', result.data.idToken)
-                    localStorage.setItem('tokenExpiration', String(new Date().getTime() + Number.parseInt(result.data.expiresIn) * 1000))
-                    cookies.set('jwt', result.data.idToken)
-                    cookies.set('expirationDate', new Date().getTime() + Number.parseInt(result.data.expiresIn) * 1000)
-                    setTimeout(()=>{
-                        cookies.remove("jwt")
-                        cookies.remove("expirationDate")
-                        if (process.client) {
-                          localStorage.removeItem("token")
-                          localStorage.removeItem("tokenExpiration")
-                        }
-                    }, Number.parseInt(result.data.expiresIn) * 1000)
-                })
-                .catch((error:any)=>console.log(error + ' ' + URL))
+        try{
+            const result:any = await axios.post(URL, { ...data, returnSecureToken: true })
+            this.context.commit("set_token", result.data.idToken)
+            localStorage.setItem('token', result.data.idToken)
+            localStorage.setItem('tokenExpiration', String(new Date().getTime() + Number.parseInt(result.data.expiresIn) * 1000))
+            cookies.set('jwt', result.data.idToken)
+            cookies.set('expirationDate', new Date().getTime() + Number.parseInt(result.data.expiresIn) * 1000)
+            setTimeout(()=>{
+                cookies.remove("jwt")
+                cookies.remove("expirationDate")
+                if (process.client) {
+                  localStorage.removeItem("token")
+                  localStorage.removeItem("tokenExpiration")
+                }
+            }, Number.parseInt(result.data.expiresIn) * 1000)
+        }catch(error){
+            console.log(error)
+        }
     }
 
     @Action({ rawError:true })
@@ -106,10 +107,11 @@ export default class Authorize extends VuexModule {
     }
 
     @Action({ rawError:true })
-    public forget_password(data:object):Promise<any>{
-        return axios.post('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=' + process.env.FIREBASE_API, data)
-            .then((success) => {
-                console.log(success)
-            })
+    public async forget_password(data:object):Promise<any>{
+        try{
+            const success:Object = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=' + process.env.FIREBASE_API, data)
+        }catch(error){
+            console.log(error)
+        }
     }
 }

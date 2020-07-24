@@ -15,24 +15,17 @@
 
     <v-tabs-items v-model="tab">
       <v-tab-item v-for="(item, index) in item_option" :key="index" eager>
-        <v-card v-if="empty">
-          <p v-for="(game, index) in card" :key="index">{{ game }}</p>          
-        </v-card>
-        <v-card v-if="empty">
-          <p>Please Login first</p>
-        </v-card>
-      </v-tab-item>
-    </v-tabs-items>
-
-    <!-- <v-tabs-items v-model="tab">
-      <v-tab-item v-for="(item, index) in item_option" :key="index" eager>
         <v-container>
-          <v-row>
-            <v-col v-for="(card, index) in per_item_content" :key="index">
-              <v-card class="mx-auto" max-width="265" shaped hover>
+          <v-card v-if="empty" flat>
+            <v-card-title class="d-flex justify-center font-weight-bold font-italic">Oops...</v-card-title>
+            <v-card-actions class="d-flex justify-center font-italic red--text">Plaese Login</v-card-actions>
+          </v-card>
+          <v-row v-else>
+            <v-col v-for="(card, index) in card" :key="index">
+              <v-card  class="mx-auto" max-width="265" shaped hover>
                 <v-menu bottom origin="center center" offset-x transition="scale-transition">
                 <template v-slot:activator="{ on }">
-                    <v-icon v-on="on" class="ml-5" small>{{horiz}}</v-icon>
+                    <v-icon v-on="on" class="ml-5" small>{{ horiz }}</v-icon>
                 </template>
                 <v-list>
                   <v-list-item v-for="(item, index) in items" :key="index">
@@ -43,10 +36,10 @@
                 <nuxt-link :to="$route.fullPath + 'game/' + card.id" no-prefetch class="router_color">
                 <v-img :src="card.img" height="200px"></v-img>
                 <v-card-title>
-                  {{card.title}}
+                  {{ card.title }}
                 </v-card-title>
                 <v-card-subtitle>
-                  {{card.subtitle}}
+                  {{ card.subtitle }}
                 </v-card-subtitle>
                 </nuxt-link>
                 <v-divider></v-divider>
@@ -57,11 +50,11 @@
                 </v-card-actions>
               </v-card>
             </v-col>
-            <reply/>
+            <reply v-if="isauth" />
           </v-row>
         </v-container>
       </v-tab-item>
-    </v-tabs-items> -->
+    </v-tabs-items>
   </v-card>
 </template>
 
@@ -70,7 +63,7 @@ import { Vue, Component, Prop } from 'nuxt-property-decorator'
 import reply from '~/components/Admin/Reply.vue'
 import PostButton from '~/components/Post/PostButton.vue'
 import PostDetail from '~/components/Post/PostDetail.vue'
-import { main } from '~/store'
+import { main, auth } from '~/store'
 import * as icon from '@mdi/js'
 import Cookies from 'universal-cookie'
 
@@ -109,12 +102,12 @@ export default class PostList extends Vue{
   @Prop({ type: Array, required: true }) card
 
   get empty(){
-    return this.card == null ? false : true
+    return this.card.length == 0 ? true : false
   }
 
-  // get per_item_content(){
-  //   return main.item_of_game_content
-  // }  
+  get isauth(){
+    return !auth.isauthenticated && !cookies.get('jwt') ? false : true
+  }
   
   topic(item){
     return this.$emit('choosenTopic', item)
