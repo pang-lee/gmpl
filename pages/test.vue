@@ -7,29 +7,16 @@
             </li>
         </ul>
 
-          <div class='layout'>
-    <!-- ommited -->
-    <SocialChat
-      icon
-      :attendants="attendants"
-    >
-      <p slot="header">Click on one of our attendants below to chat on WhatsApp.</p>
-      <template v-slot:button>
-        <img
-          src="https://raw.githubusercontent.com/ktquez/vue-social-chat/master/src/icons/whatsapp.svg"
-          alt="icon whatsapp"
-          aria-hidden="true"
-        >      
-      </template>
-      <small slot="footer">Opening hours: 8am to 6pm</small>
-    </SocialChat>
-        </div>
+  <v-btn @click="send()">123456</v-btn>
 
-    </div>
+  <v-btn @click="ajax()">789456</v-btn>
+
+  </div>
 </template>
 
 <script>
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
+import { auth } from '~/store'
 import gql from 'graphql-tag'
 
 @Component({
@@ -62,6 +49,18 @@ export default class test extends Vue{
               },
             ]
         }
+    }
+
+    send(){
+        this.$axios.get('https://api.restream.io/loginForm?response_type=code&client_id=d5276986-193d-4a4b-8003-2e27eb0dad9a&redirect_uri=localhost:3000&state=fj1iro2jro12ijoi1')
+        .then((data) => console.log(data))
+        .catch((error) => console.log(error))
+    }
+
+    ajax(){
+        this.$axios.get('https://jsonplaceholder.typicode.com/todos')
+        .then((result) => console.log(result.data[0]))
+        .catch((error) => console.log(error))
     }
 }
 </script>

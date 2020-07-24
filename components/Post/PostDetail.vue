@@ -1,24 +1,24 @@
 <template>
     <div>
         <v-btn class="mr-1" depressed :ripple="false" small icon @click.stop="dialog = true">
-            <v-icon>{{expand}}</v-icon>
+            <v-icon>{{ expand }}</v-icon>
         </v-btn>
         <v-dialog v-model="dialog" overlay-opacity='0.5' scrollable eager>
             <perfect-scrollbar>
               <v-card>
                   <div class='d-flex justify-end'>
                     <v-btn class="mr-5 mt-2" rounded outlined large nuxt :to="$route.fullPath + '/' + card.id">Join</v-btn>
-                    <v-icon class="mr-5 mt-2" @click="dialog = false">{{clear}}</v-icon>
+                    <v-icon class="mr-5 mt-2" @click="dialog = false">{{ clear }}</v-icon>
                   </div>
                 <v-card-title>
-                    {{card.title}}
+                    {{ card.title }}
                 </v-card-title>
                 <v-card-text>
-                    {{card.subtitle}}
+                    {{ card.subtitle }}
                 </v-card-text>
                 <v-card-actions>
                     <v-card-text>
-                        {{card.description}}
+                        {{ card.description }}
                     </v-card-text>
                 </v-card-actions>        
               </v-card>
@@ -42,9 +42,9 @@ export default class PostDetail extends Vue{
         }
     }
 
-    @Prop({type:Number, require:true}) index
+    @Prop({ type:Number, require:true }) index
 
-    @Prop({type:Object, required: true}) card
+    @Prop({ type:Object, required: true }) card
 }
 </script>
 

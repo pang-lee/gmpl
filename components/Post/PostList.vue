@@ -7,12 +7,24 @@
     <v-sheet elevation="10">
      	<v-tabs v-model="tab" grow show-arrows :prev-icon="prev" :next-icon="next" center-active>         
         <v-tabs-slider color="teal lighten-3"></v-tabs-slider>
-          <v-tab v-for="(item, index) in item_option" :key="index">
+          <v-tab v-for="(item, index) in item_option" :key="index" @click="topic(item)">
     	      <v-icon>{{ item.icon }}</v-icon>&nbsp;{{ item.text }}
           </v-tab>
     	</v-tabs>
     </v-sheet>
+
     <v-tabs-items v-model="tab">
+      <v-tab-item v-for="(item, index) in item_option" :key="index" eager>
+        <v-card v-if="empty">
+          <p v-for="(game, index) in card" :key="index">{{ game }}</p>          
+        </v-card>
+        <v-card v-if="empty">
+          <p>Please Login first</p>
+        </v-card>
+      </v-tab-item>
+    </v-tabs-items>
+
+    <!-- <v-tabs-items v-model="tab">
       <v-tab-item v-for="(item, index) in item_option" :key="index" eager>
         <v-container>
           <v-row>
@@ -49,7 +61,7 @@
           </v-row>
         </v-container>
       </v-tab-item>
-    </v-tabs-items>
+    </v-tabs-items> -->
   </v-card>
 </template>
 
@@ -92,22 +104,24 @@ export default class PostList extends Vue{
       }
   }
 
-  @Prop({type: String, required: true}) select
+  @Prop({ type: String, required: true }) select
 
-  get per_item_content(){
-    return main.item_of_game_content
+  @Prop({ type: Array, required: true }) card
+
+  get empty(){
+    return this.card == null ? false : true
   }
-  get showable(){
-    return main.show
+
+  // get per_item_content(){
+  //   return main.item_of_game_content
+  // }  
+  
+  topic(item){
+    return this.$emit('choosenTopic', item)
   }
 
-  // show_description(index){
-  //   console.log("show_des index" + index)
-  //   return main.show_or_not(index)
-  // }
-
-  created(){
-    this.select == 'Card' ? this.item_option = main.item_of_game.slice(0, 2) : this.item_option = main.item_of_game.slice(2)
+  mounted() {
+    return this.select == 'Card' ? this.item_option = main.item_of_game.slice(0, 2) : this.item_option = main.item_of_game.slice(2)
   }
 }
 </script>

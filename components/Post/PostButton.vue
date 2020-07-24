@@ -3,7 +3,7 @@
     <v-btn depressed :ripple="false" text small @click="clickLike">
       <v-icon id="like" :style="LikeStyle">{{ favorite }}</v-icon>
     </v-btn>
-    <v-btn depressed color="blue darken-1" :ripple="false" text small nuxt :to="$route.fullPath + 'comment/' + card.id" @click="dialog(card)">
+    <v-btn depressed color="blue darken-1" :ripple="false" text small nuxt :to="$route.fullPath + 'comment/' + card.id">
       <v-icon id="comment">{{ comment }}</v-icon>
     </v-btn>
     <v-btn depressed color="teal accent-4" :ripple="false" text small @click="dialogshare = true">
@@ -37,15 +37,10 @@
 
 <script>
 import { Vue, Component, Prop, Watch } from 'nuxt-property-decorator'
-import { Disqus } from 'vue-disqus'
 import { main } from '~/store'
 import * as icon from '@mdi/js'
 
-@Component({
-  components: {
-    Disqus
-  }
-})
+@Component
 export default class PostList extends Vue{
   data () {
     return {
@@ -71,10 +66,12 @@ export default class PostList extends Vue{
     this.BookMarkStyle.color == '#90A4AE' ? this.BookMarkStyle.color = '#E040FB' : this.BookMarkStyle.color = '#90A4AE'
   }
 
-  dialog(card){
-    main.set_selected_card(card)
-    return main.show_dialog()
-  }
+  // below are setup the dialog of comment broad
+  //  @click="dialog(card)"
+  // dialog(card){
+  //   main.set_selected_card(card)
+  //   return main.show_dialog()
+  // }
 }
 </script>
 
