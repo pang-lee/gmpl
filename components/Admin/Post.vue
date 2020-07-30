@@ -1,23 +1,21 @@
 <template>
-  <client-only>
-    <v-container fluid>
-      <v-row justify="center">
-        <v-subheader class="font-italic font-weight-bold">Post</v-subheader>
-      </v-row>
-      <v-divider></v-divider>
-      <v-row justify="center">
-        <v-col cols="5">
-          <v-text-field v-model="search" :append-icon="search_icon" color="black" placeholder="Search..." single-line hide-details dense></v-text-field>
-        </v-col>
-      </v-row>
-      <v-data-table :headers="headers" :items="content" single-expand :expanded.sync="expanded" :expand-icon="expand" item-key="name" show-expand class="elevation-5 mt-5" :page.sync="page" :search="search" :items-per-page="itemsPerPage" @page-count="pageCount = $event" hide-default-footer>
-        <template v-slot:expanded-item="{ headers, item }">
-          <td :colspan="headers.length">More info about {{ item.name }}</td>
-        </template>
-      </v-data-table>
-      <v-pagination class="text-center pt-2 mt-3" v-model="page" :length="pageCount" circle :next-icon="last_page" :prev-icon="first_page"></v-pagination>
-    </v-container>
-  </client-only>
+  <v-container fluid>
+    <v-row justify="center">
+      <v-subheader class="font-italic font-weight-bold">Post</v-subheader>
+    </v-row>
+    <v-divider></v-divider>
+    <v-row justify="center">
+      <v-col cols="5">
+        <v-text-field v-model="search" :append-icon="search_icon" color="black" placeholder="Search..." single-line hide-details dense></v-text-field>
+      </v-col>
+    </v-row>
+    <v-data-table :headers="headers" :items="content" single-expand :expanded.sync="expanded" :expand-icon="expand" item-key="name" show-expand class="elevation-5 mt-5" :page.sync="page" :search="search" :items-per-page="itemsPerPage" @page-count="pageCount = $event" hide-default-footer>
+      <template v-slot:expanded-item="{ headers, item }">
+        <td :colspan="headers.length">More info about {{ item.name }}</td>
+      </template>
+    </v-data-table>
+    <v-pagination class="text-center pt-2 mt-3" v-model="page" :length="pageCount" circle :next-icon="last_page" :prev-icon="first_page"></v-pagination>
+  </v-container>
 </template>
 
 <script>

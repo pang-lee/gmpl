@@ -1,55 +1,50 @@
 <template>
-  <client-only>
-    <v-container fluid>
-      <v-row justify="center">
-        <v-subheader class="font-italic font-weight-bold">Profile</v-subheader>
-
-        <v-expansion-panels popout focusable>
-          <v-expansion-panel v-for="(n, index) in info_item_number" :key="n" hide-actions @click="content(index)">
-              <v-expansion-panel-header>
-                <v-row align="center" class="spacer" no-gutters>
-                  <v-col cols="4" sm="2" md="1">
-                    <v-avatar size="36px">
-                      <img v-if="info_avatar" alt="Avatar" :src="info_avatar">
-                      <!-- <v-icon v-else :color="message.color" v-text="message.icon"></v-icon> -->
-                    </v-avatar>
-                  </v-col>
-                  <v-col class="text-truncate font-italic font-weight-bold">
-                    {{info_name}}
-                  </v-col>
-                  <v-col v-if="info_gender" class="text-truncate hidden-xs-only">
-                    &mdash;
-                    {{ info_gender }}
-                  </v-col>
-                  <v-col v-if="info_email" class="text-truncate hidden-md-and-down">
-                    &mdash;
-                    {{ info_email }}
-                  </v-col>
-                  <v-col v-if="info_birthday" class="text-truncate hidden-sm-and-down">
-                    &mdash;
-                    {{ info_birthday }}
-                  </v-col>
-                  <v-col v-if="info_phone" class="text-truncate hidden-sm-and-down">
-                    &mdash;
-                    {{ info_phone }}
-                  </v-col>
-                </v-row>
-              </v-expansion-panel-header>
-
-            <v-expansion-panel-content>
-              <v-divider></v-divider>
-                <v-card-text>
-                  <keep-alive>
-                    <component :is="current"></component>
-                  </keep-alive>
-                </v-card-text>
-            </v-expansion-panel-content>
-
-          </v-expansion-panel>
-        </v-expansion-panels>
-      </v-row>
-    </v-container>
-  </client-only>
+  <v-container fluid>
+    <v-row justify="center">
+      <v-subheader class="font-italic font-weight-bold">Profile</v-subheader>
+      <v-expansion-panels popout focusable>
+        <v-expansion-panel v-for="(n, index) in info_item_number" :key="n" hide-actions @click="content(index)">
+            <v-expansion-panel-header>
+              <v-row align="center" class="spacer" no-gutters>
+                <v-col cols="4" sm="2" md="1">
+                  <v-avatar size="36px">
+                    <img v-if="info_avatar" alt="Avatar" :src="info_avatar">
+                    <v-icon v-else :color="message.color" v-text="message.icon"></v-icon>
+                  </v-avatar>
+                </v-col>
+                <v-col class="font-italic font-weight-bold">
+                  {{info_name}}
+                </v-col>
+                <v-col v-if="info_gender" class="hidden-xs-only">
+                  &mdash;
+                  {{ info_gender }}
+                </v-col>
+                <v-col v-if="info_email" class="hidden-md-and-down">
+                  &mdash;
+                  {{ info_email }}
+                </v-col>
+                <v-col v-if="info_birthday" class="hidden-sm-and-down">
+                  &mdash;
+                  {{ info_birthday }}
+                </v-col>
+                <v-col v-if="info_phone" class="hidden-sm-and-down">
+                  &mdash;
+                  {{ info_phone }}
+                </v-col>
+              </v-row>
+            </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <v-divider></v-divider>
+              <v-card-text>
+                <keep-alive>
+                  <component :is="current"></component>
+                </keep-alive>
+              </v-card-text>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

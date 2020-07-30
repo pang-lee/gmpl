@@ -33,7 +33,7 @@
     </client-only>
 </template>
 
-<script type="ts">
+<script>
 import { Vue, Component, Prop, Watch } from 'nuxt-property-decorator'
 import { admin } from '~/store'
 import * as icon from '@mdi/js'

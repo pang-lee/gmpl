@@ -1,23 +1,21 @@
 <template>
-  <client-only>
-    <v-container fluid>
-      <v-row justify="center">
-        <v-subheader class="font-italic font-weight-bold">Analysis</v-subheader>
-      </v-row>
-      <v-divider></v-divider>
-      <v-row>
-        <v-col cols="12">
-          <ve-line :data="LineData" :settings="chartSettings"></ve-line>  
-        </v-col>
-        <v-col cols="12">
-          <ve-pie :data="PieData"></ve-pie>
-        </v-col>
-        <v-col cols="12">
-          <ve-radar :data="RadarData"></ve-radar>
-        </v-col>
-      </v-row>
-    </v-container>
-  </client-only>
+  <v-container fluid>
+    <v-row justify="center">
+      <v-subheader class="font-italic font-weight-bold">Analysis</v-subheader>
+    </v-row>
+    <v-divider></v-divider>
+    <v-row>
+      <v-col cols="12">
+        <ve-line :data="LineData" :settings="chartSettings"></ve-line>  
+      </v-col>
+      <v-col cols="12">
+        <ve-pie :data="PieData"></ve-pie>
+      </v-col>
+      <v-col cols="12">
+        <ve-radar :data="RadarData"></ve-radar>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
