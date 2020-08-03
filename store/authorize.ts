@@ -59,17 +59,17 @@ export default class Authorize extends VuexModule {
         this.context.getters.current_form == 'Register' ? URL = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + process.env.FIREBASE_API : URL = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + process.env.FIREBASE_API
         try{
             const result:any = await axios.post(URL, { ...data, returnSecureToken: true })
-            this.context.commit("set_token", result.data.idToken)
+            this.context.commit('set_token', result.data.idToken)
             localStorage.setItem('token', result.data.idToken)
             localStorage.setItem('tokenExpiration', String(new Date().getTime() + Number.parseInt(result.data.expiresIn) * 1000))
             cookies.set('jwt', result.data.idToken)
             cookies.set('expirationDate', new Date().getTime() + Number.parseInt(result.data.expiresIn) * 1000)
             setTimeout(()=>{
-                cookies.remove("jwt")
-                cookies.remove("expirationDate")
+                cookies.remove('jwt')
+                cookies.remove('expirationDate')
                 if (process.client) {
-                  localStorage.removeItem("token")
-                  localStorage.removeItem("tokenExpiration")
+                  localStorage.removeItem('token')
+                  localStorage.removeItem('tokenExpiration')
                 }
             }, Number.parseInt(result.data.expiresIn) * 1000)
         }catch(error){
@@ -83,13 +83,13 @@ export default class Authorize extends VuexModule {
         let expirationDate:any
         if (req) {
             if (!req.headers.cookie) return
-            const jwtCookie:string = req.headers.cookie.split(";").find((c:string) => c.trim().startsWith("jwt="))
+            const jwtCookie:string = req.headers.cookie.split(';').find((c:string) => c.trim().startsWith('jwt='))
             if (!jwtCookie) return
-            token = jwtCookie.split("=")[1]
-            expirationDate = req.headers.cookie.split(";").find((c:string) => c.trim().startsWith("expirationDate=")).split("=")[1]
+            token = jwtCookie.split('=')[1]
+            expirationDate = req.headers.cookie.split(';').find((c:string) => c.trim().startsWith('expirationDate=')).split('=')[1]
         } else {
-            token = localStorage.getItem("token")
-            expirationDate = localStorage.getItem("tokenExpiration")
+            token = localStorage.getItem('token')
+            expirationDate = localStorage.getItem('tokenExpiration')
         }
         if (new Date().getTime() > Number.parseInt(expirationDate) || !token) return this.context.dispatch('logout')
         this.context.commit('set_token', token)
@@ -98,11 +98,15 @@ export default class Authorize extends VuexModule {
     @Action({ rawError:true })
     public logout():any{
         this.context.commit('clear_token')
-        cookies.remove("jwt")
-        cookies.remove("expirationDate")
+        cookies.remove('jwt')
+        cookies.remove('expirationDate')
+        cookies.remove('restram_accessToken')
+        cookies.remove('restream_expires')
         if (process.client) {
-          localStorage.removeItem("token")
-          localStorage.removeItem("tokenExpiration")
+          localStorage.removeItem('token')
+          localStorage.removeItem('tokenExpiration')
+          localStorage.removeItem('restram_accessToken')
+          localStorage.removeItem('restream_expires')
         }            
     }
 

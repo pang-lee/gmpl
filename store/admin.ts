@@ -162,15 +162,4 @@ export default class Admin extends VuexModule {
             console.log("channel error " + error)
         }
     }
-
-    @Action({ rawError:true })
-    public async change_status({ state, id }:any):Promise<any>{
-        try{
-            const STATUS:string = String(process.env.CSRF_ANYWHERE) + String(process.env.RESTREAM_STATUS)
-            const status:any = await axios.patch(STATUS + id, JSON.stringify({ active:state }), { headers:{ authorization: 'Bearer ' + cookies.get('restram_accessToken'), 'Content-Type': 'application/json' } })
-            console.log(status)
-        }catch(error){
-            console.log("status error " + error)
-        }
-    }
 }

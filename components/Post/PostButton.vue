@@ -55,7 +55,7 @@ export default class PostList extends Vue{
     }
   }
 
-  @Prop({type:Object, required: true}) card
+  @Prop({ type:Object, required: true }) card
 
   clickLike(event) {
     this.LikeStyle.color == '#90A4AE' ? this.LikeStyle.color = '#F44336' : this.LikeStyle.color = '#90A4AE'

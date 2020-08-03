@@ -17,7 +17,7 @@
                 <v-list-item-content>
                   <v-list-item-title>
                     {{ chan.displayName }} - <a :href="chan.url">{{ chan.url }}</a>
-                    <v-switch inset class="ml-3" v-model="chan.enabled" :label="`Status: ${chan.enabled == true ? 'active' : 'inactive'}`" @click="switchStatus(chan.enabled, chan.id)"></v-switch>
+                    <v-list-item-subtitle class="mt-3" v-model="chan.enabled">Status:&nbsp;&nbsp;{{ chan.enabled == true ? 'active' : 'inactive' }}</v-list-item-subtitle>
                   </v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
@@ -40,7 +40,7 @@ export default class Restream extends Vue{
     return{
       stream:icon.mdiVideoBox,
       restream:{},
-      channel:[]
+      channel:[],
     }
   }
 
@@ -53,12 +53,6 @@ export default class Restream extends Vue{
       return false
     }
   }
-
-  switchStatus(status, identifier){
-    if(status == false) return admin.change_status({ state:true, id:identifier })
-    else return admin.change_status({ state:false, id:identifier })
-  }
-
 }
 </script>
 
