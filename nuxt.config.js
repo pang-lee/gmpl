@@ -35,6 +35,7 @@ module.exports = {
   plugins: [
     '~/plugins/validation.js',
     '~/plugins/scrollbar.js',
+    { src: '~/plugins/videoplayer', mode: 'client' },
     { src: '~/plugins/babylon.js', mode: 'client' },
     { src: '~/plugins/disqus.js', mode: 'client'},
   ],
@@ -63,7 +64,14 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     '@nuxtjs/auth',
+    'nuxt-socket-io',
+    'vue-web-cam/nuxt'
   ],
+  io:{
+    sockets: [{
+      url: 'https://nuxt-socket-io.herokuapp.com'
+    }]
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
