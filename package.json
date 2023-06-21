@@ -23,7 +23,7 @@
     "babylonjs-loaders": "^4.1.0",
     "echarts": "^4.8.0",
     "graphql-tag": "^2.11.0",
-    "nuxt": "^2.14.0",
+    "nuxt": "^3.4.3",
     "nuxt-socket-io": "^1.1.6",
     "nuxt-sweetalert2": "^1.0.0",
     "qs": "^6.9.4",
